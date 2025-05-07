@@ -1,3 +1,5 @@
+"""Module 1: Calculate the sum of multiples of 3 or 5 below 1000."""
+
 # ver.1
 multiples = []
 for i in range(1000):
