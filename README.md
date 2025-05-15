@@ -7,6 +7,12 @@
 `pylint .`
 
 ## How to compile & execute Ada
+- Install gnat
+```
+sudo apt install gnat   # Debian / Ubuntu 
+brew install gcc         # macOS
+```
+- Compile & execute a module
 ```
 gnat make hello.adb
 ./hello
