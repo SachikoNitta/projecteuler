@@ -29,8 +29,8 @@ def compute_max_product(numbers):
     """Compute the maximum product of four adjacent numbers in the grid."""
     max_product = 0
     for i in range(len(numbers)):
-        row = i // 20
-        col = i % 20
+        row = i // GRID_SIZE
+        col = i % GRID_SIZE
         # 横
         if col <= 16:
             product = numbers[i] * numbers[i+1] * numbers[i+2] * numbers[i+3]
