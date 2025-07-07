@@ -21,34 +21,41 @@ grid_str = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
-# grid_str を1次元リストに変換
-numbers = [int(num) for num in grid_str.strip().split()]
+def parse_grid(grid_str):
+    """Convert the grid string into a list of integers."""
+    return [int(num) for num in grid_str.strip().split()]
 
-max_product = 0
-for i in range(len(numbers)):
-    row = i // 20
-    col = i % 20
-    # 横
-    if col <= 16:
-        product = numbers[i] * numbers[i+1] * numbers[i+2] * numbers[i+3]
-        if product > max_product:
-            max_product = product
-    # 縦
-    if row <= 16:
-        product = numbers[i] * numbers[i+20] * numbers[i+40] * numbers[i+60]
-        if product > max_product:
-            max_product = product
-    # 斜め（右下）
-    if col <= 16 and row <= 16:
-        product = numbers[i] * numbers[i+21] * numbers[i+42] * numbers[i+63]
-        if product > max_product:
-            max_product = product
-    # 斜め（左下）
-    if col >= 3 and row <= 16:
-        product = numbers[i] * numbers[i+19] * numbers[i+38] * numbers[i+57]
-        if product > max_product:
-            max_product = product
+def compute_max_product(numbers):
+    """Compute the maximum product of four adjacent numbers in the grid."""
+    max_product = 0
+    for i in range(len(numbers)):
+        row = i // 20
+        col = i % 20
+        # 横
+        if col <= 16:
+            product = numbers[i] * numbers[i+1] * numbers[i+2] * numbers[i+3]
+            if product > max_product:
+                max_product = product
+        # 縦
+        if row <= 16:
+            product = numbers[i] * numbers[i+20] * numbers[i+40] * numbers[i+60]
+            if product > max_product:
+                max_product = product
+        # 斜め（右下）
+        if col <= 16 and row <= 16:
+            product = numbers[i] * numbers[i+21] * numbers[i+42] * numbers[i+63]
+            if product > max_product:
+                max_product = product
+        # 斜め（左下）
+        if col >= 3 and row <= 16:
+            product = numbers[i] * numbers[i+19] * numbers[i+38] * numbers[i+57]
+            if product > max_product:
+                max_product = product
+    return max_product
 
+# Main logic
+numbers = parse_grid(grid_str)
+max_product = compute_max_product(numbers)
 print(max_product)
 
 
