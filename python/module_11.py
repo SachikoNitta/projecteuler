@@ -61,10 +61,11 @@ def compute_max_product(numbers):
                 max_product = product
     return max_product
 
-# Main logic
-numbers = parse_grid(grid_str)
-max_product = compute_max_product(numbers)
-print(max_product)
+if __name__ == "__main__":
+    # Main logic
+    numbers = parse_grid(grid_str)
+    max_product = compute_max_product(numbers)
+    print(max_product)
 
 
 
