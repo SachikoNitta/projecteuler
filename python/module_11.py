@@ -32,31 +32,31 @@ def compute_max_product(numbers):
         row = i // GRID_SIZE
         col = i % GRID_SIZE
         # 横
-        if col <= 20 - ADJACENT_COUNT:
+        if col <= GRID_SIZE - ADJACENT_COUNT:
             product = 1
             for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset]
+                product *= numbers[i + offset * HORIZONTAL_STEP]
             if product > max_product:
                 max_product = product
         # 縦
-        if row <= 20 - ADJACENT_COUNT:
+        if row <= GRID_SIZE - ADJACENT_COUNT:
             product = 1
             for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * 20]
+                product *= numbers[i + offset * GRID_SIZE]
             if product > max_product:
                 max_product = product
         # 斜め（右下）
-        if col <= 20 - ADJACENT_COUNT and row <= 20 - ADJACENT_COUNT:
+        if col <= GRID_SIZE - ADJACENT_COUNT and row <= GRID_SIZE - ADJACENT_COUNT:
             product = 1
             for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * 21]
+                product *= numbers[i + offset * DIAGONAL_DOWN_STEP]
             if product > max_product:
                 max_product = product
         # 斜め（左下）
-        if col >= ADJACENT_COUNT - 1 and row <= 20 - ADJACENT_COUNT:
+        if col >= ADJACENT_COUNT - 1 and row <= GRID_SIZE - ADJACENT_COUNT:
             product = 1
             for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * 19]
+                product *= numbers[i + offset * DIAGONAL_UP_STEP]
             if product > max_product:
                 max_product = product
     return max_product
