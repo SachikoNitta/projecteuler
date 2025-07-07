@@ -32,33 +32,17 @@ def compute_max_product(numbers):
         row = i // GRID_SIZE
         col = i % GRID_SIZE
         # Horizontal
-        if col <= GRID_SIZE - ADJACENT_COUNT:
-            product = 1
-            for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * HORIZONTAL_STEP]
-            if product > max_product:
-                max_product = product
+        max_product = max(max_product, compute_directional_product(
+            numbers, i, HORIZONTAL_STEP, col <= GRID_SIZE - ADJACENT_COUNT))
         # Vertical
-        if row <= GRID_SIZE - ADJACENT_COUNT:
-            product = 1
-            for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * GRID_SIZE]
-            if product > max_product:
-                max_product = product
+        max_product = max(max_product, compute_directional_product(
+            numbers, i, GRID_SIZE, row <= GRID_SIZE - ADJACENT_COUNT))
         # Diagonal (down-right)
-        if col <= GRID_SIZE - ADJACENT_COUNT and row <= GRID_SIZE - ADJACENT_COUNT:
-            product = 1
-            for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * DIAGONAL_DOWN_STEP]
-            if product > max_product:
-                max_product = product
+        max_product = max(max_product, compute_directional_product(
+            numbers, i, DIAGONAL_DOWN_STEP, col <= GRID_SIZE - ADJACENT_COUNT and row <= GRID_SIZE - ADJACENT_COUNT))
         # Diagonal (down-left)
-        if col >= ADJACENT_COUNT - 1 and row <= GRID_SIZE - ADJACENT_COUNT:
-            product = 1
-            for offset in range(ADJACENT_COUNT):
-                product *= numbers[i + offset * DIAGONAL_UP_STEP]
-            if product > max_product:
-                max_product = product
+        max_product = max(max_product, compute_directional_product(
+            numbers, i, DIAGONAL_UP_STEP, col >= ADJACENT_COUNT - 1 and row <= GRID_SIZE - ADJACENT_COUNT))
     return max_product
 
 if __name__ == "__main__":
