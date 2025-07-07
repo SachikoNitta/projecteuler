@@ -25,7 +25,7 @@ grid_str = """
 numbers = [int(num) for num in grid_str.strip().split()]
 
 max_product = 0
-for i in range(400):
+for i in range(len(numbers)):
     row = i // 20
     col = i % 20
     # 横
